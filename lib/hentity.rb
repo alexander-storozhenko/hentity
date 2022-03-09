@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "hash_entity/version"
+require_relative "hentity/version"
 
 module HashEntity
   class Error < StandardError; end

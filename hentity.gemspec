@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "lib/hash_entity/version"
+require_relative "lib/hentity/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "hash_entity"
+  spec.name = "hentity"
   spec.version = HashEntity::VERSION
   spec.authors = ["storozhenko"]
   spec.email = ["storozhenkoalex@yandex.ru"]
