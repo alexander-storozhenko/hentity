@@ -32,7 +32,6 @@ module Hentity
             type: :light_green,
             message: :green,
             timestamp: :white,
-            
           }.merge(@color_config[:success])
         )
       end
@@ -48,7 +47,7 @@ module Hentity
         )
       end
 
-      def error(message  )
+      def error(message)
         out_message(
           'ERROR', message,
           {
@@ -66,7 +65,6 @@ module Hentity
             type: :black,
             message: :light_red,
             timestamp: :white,
-            
           }.merge(@color_config[:fatal])
         )
       end

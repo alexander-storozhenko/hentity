@@ -24,12 +24,3 @@ module Hentity
     output: :stdout
   )
 end
-
-
-class SEntity2 < Hentity::Entity
-  float :id, exactly: false
-  integer :uaid, exactly: false
-  boolean :b
-end
-
-SEntity2.new({uaid:  true})
