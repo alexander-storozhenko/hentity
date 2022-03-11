@@ -13,7 +13,7 @@ module Hentity
 
     def field_require!(field)
       if @config.fetch(:require, false)
-        raise 'Field required!' unless @hash.keys.include?(field)
+        raise Hentity::Errors::TypeError, 'Field required!' unless @hash.keys.include?(field)
       end
     end
   end
