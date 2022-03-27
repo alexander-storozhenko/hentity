@@ -1,8 +1,5 @@
 # Hentity
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hentity`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Hentity gem for creating types for your hash.
 
 ## Installation
 
@@ -22,8 +19,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create your Hash entity
+```ruby
+class ProductsEntity < Hentity::Entity
+   integer :id, required: true
+   float   :sum, exactly: true
+   string  :name
+end
 
+ProductsEntity.new({id: 1, sum: 2.2, name: 'product1'})
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
