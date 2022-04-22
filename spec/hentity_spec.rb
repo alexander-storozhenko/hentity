@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
-RSpec.describe HashEntity do
+RSpec.describe Hentity do
   it "has a version number" do
-    expect(HashEntity::VERSION).not_to be nil
+    expect(Hentity::VERSION).not_to be nil
   end
 
   it "does something useful" do
-    expect(false).to eq(true)
+    class Model < Hentity::Entity
+
+      array :a, require: true, types: [
+        integer(require: true),
+        string(require: true)
+      ]
+    end
+
+    model = Model.new({a: [1]})
   end
 end

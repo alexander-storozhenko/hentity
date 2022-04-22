@@ -3,24 +3,22 @@
 require_relative "hentity/version"
 
 def require_dir(dir)
-  Dir.entries(dir).reject { |f| %w[. ..].include?(f) }.each do |path|
-    dir_path = "#{dir}/#{path}"
-
-    if path.split('.').last == 'rb'
-      require_relative dir_path
-    elsif File.directory?(dir_path)
-      require_dir(dir_path)
-    else
-      break
-    end
-  end
+  Dir["#{dir}/*.rb"].sort.each {|file| require_relative file }
 end
 
-require_dir "#{__dir__}/hentity"
+MAIN_DIR = "#{__dir__}/hentity".freeze
+
+require_dir MAIN_DIR
+require_dir "#{MAIN_DIR}/errors"
 
 module Hentity
   Hentity::Logger.configure(
     colorize: true,
-    output: :stdout
+    output: :stdout,
+    timestamp_format: '%FT%T%Z'
   )
+end
+
+class Model < Hentity::Entity
+  integer :id
 end

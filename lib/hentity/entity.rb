@@ -29,12 +29,15 @@ module Hentity
       def check_rules(hash)
         check_global_config!(hash, @fields_params)
         check_types!(hash, @fields_params)
+
+        # rescue => e
+        #   Hentity::Logger.error(e.message)
       end
     end
   end
 
   KNOWN_TYPES.each do |type, klass|
-    Entity.define_singleton_method type do |field, config = {}|
+    Entity.define_singleton_method type do |field = nil, config = {}|
       (@fields_params ||= {})[field] = { type: type, klass: klass, config: config }
     end
   end

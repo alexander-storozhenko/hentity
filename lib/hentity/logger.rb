@@ -7,12 +7,13 @@ module Hentity
       def configure(config)
         @colorize = config.fetch(:colorize, true)
         @output = config.fetch(:output, :stdout)
+        @timestamp_format = config.fetch(:timestamp_format, '%FT%T%Z')
         @color_config = { info: {}, success: {}, warn: {}, error: {}, fatal: {} }.merge config.fetch(:color_config, {})
       end
 
       attr_reader :colors, :output
 
-      # colors in format `colorize` gem
+      # colors in format *colorize* gem
 
       def info(message)
         out_message(
@@ -94,11 +95,13 @@ module Hentity
       end
 
       def build(colorized_type, timestamp, message)
-        [colorized_type, timestamp, message].join(' ')
+        [colorized_type, timestamp, message].reject(&:nil?).join(' ')
       end
 
       def timestamp(timestamp_color)
-        "[#{DateTime.now}]".send(timestamp_color)
+        return unless @timestamp_format
+
+        "[#{DateTime.now.strftime(@timestamp_format)}]".send(timestamp_color)
       end
     end
   end
